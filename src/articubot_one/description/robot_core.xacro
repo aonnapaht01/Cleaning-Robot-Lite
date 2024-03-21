@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <xacro:include filename="inertial_macros.xacro" />
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- BASE LINK -->
+
+    <link name="base_link">
+
+    </link>
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="base_footprint">
+    </link>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/body.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/body.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="15" x="0.5" y="0.5" z="0.25">
+            <origin xyz="0 0 0.35" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- SHOLDER -->
+    <!-- RIGHT SHOLDER -->
+
+    <joint name="right_sholder_joint" type="continuous">
+        <parent link="chassis"/>
+        <child link="right_sholder"/>
+        <origin xyz="0 0.26 0.725" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_sholder">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/r_sholder.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/r_sholder.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_sholder">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+    <!-- LEFT SHOLDER -->
+
+    <joint name="left_sholder_joint" type="continuous">
+        <parent link="chassis"/>
+        <child link="left_sholder"/>
+        <origin xyz="0 -0.26 0.725" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_sholder">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/l_sholder.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/l_sholder.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_sholder">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- JOINT1 -->
+    <!-- RIGHT JOINT1 -->
+
+    <joint name="right_joint1_joint" type="continuous">
+        <parent link="right_sholder"/>
+        <child link="right_joint1"/>
+        <origin xyz="0 0.085 -0.235" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_joint1">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint1.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint1.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_joint1">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+    <!-- LEFT JOINT1 -->
+
+    <joint name="left_joint1_joint" type="continuous">
+        <parent link="left_sholder"/>
+        <child link="left_joint1"/>
+        <origin xyz="0 -0.085 -0.235" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_joint1">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint1.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint1.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_joint1">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ARM -->
+    <!-- RIGHT ARM -->
+
+    <joint name="right_arm_joint" type="continuous">
+        <parent link="right_joint1"/>
+        <child link="right_arm"/>
+        <origin xyz="0 -0.017 -0.085" rpy="0 0 ${pi}"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_arm">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/arm.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/arm.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_arm">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo> 
+
+    <!-- LEFT ARM -->
+
+    <joint name="left_arm_joint" type="continuous">
+        <parent link="left_joint1"/>
+        <child link="left_arm"/>
+        <origin xyz="0 0.017 -0.085" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_arm">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/arm.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/arm.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_arm">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo> 
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- JOINT2 -->
+    <!-- RIGHT JOINT2 -->
+
+    <joint name="right_joint2_joint" type="continuous">
+        <parent link="right_arm"/>
+        <child link="right_joint2"/>
+        <origin xyz="0 -0.017 -0.24" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="right_joint2">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint2.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint2.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_joint2">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo> 
+
+    <!-- LEFT JOINT2 -->
+
+    <joint name="left_joint2_joint" type="continuous">
+        <parent link="left_arm"/>
+        <child link="left_joint2"/>
+        <origin xyz="0 -0.017 -0.24" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_joint2">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint2.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/joint2.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_joint2">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo> 
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- GRIP1 -->
+    <!-- RIGHT GRIP1 -->
+
+    <joint name="right_grip1_joint" type="continuous">
+        <parent link="right_joint2"/>
+        <child link="right_grip1"/>
+        <origin xyz="0 0.01 -0.055" rpy="0 ${pi/2} ${pi}"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_grip1">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip1.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip1.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_grip1">
+        <material>Gazebo/Red</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>     
+
+    <!-- LEFT GRIP1 -->
+
+    <joint name="left_grip1_joint" type="continuous">
+        <parent link="left_joint2"/>
+        <child link="left_grip1"/>
+        <origin xyz="0 -0.01 -0.055" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_grip1">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip1.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip1.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_grip1">
+        <material>Gazebo/Red</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>    
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- GRIP2 -->
+    <!-- RIGHT GRIP2 -->
+
+    <joint name="right_grip2_joint" type="continuous">
+        <parent link="right_joint2"/>
+        <child link="right_grip2"/>
+        <origin xyz="0 -0.025 -0.055" rpy="0 -${pi/2} ${pi}"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_grip2">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip2.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip2.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_grip2">
+        <material>Gazebo/Red</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo> 
+
+    <!-- LEFT GRIP2 -->
+
+    <joint name="left_grip2_joint" type="continuous">
+        <parent link="left_joint2"/>
+        <child link="left_grip2"/>
+        <origin xyz="0 0.025 -0.055" rpy="0 -${pi/2} 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_grip2">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip2.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/grip2.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_grip2">
+        <material>Gazebo/Red</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo> 
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- WHEEL -->    
+    <!-- RIGHT BACK WHEEL -->
+
+    <joint name="right_back_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_back_wheel"/>
+        <origin xyz="0.158 0.28 0.126" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_back_wheel">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.15" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_back_wheel">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+    <!-- RIGHT FRONT WHEEL -->
+
+    <joint name="right_front_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_front_wheel"/>
+        <origin xyz="-0.172 0.28 0.126" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="right_front_wheel">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.15" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>    
+
+    <!-- LEFT BACK WHEEL -->
+
+    <joint name="left_back_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_back_wheel"/>
+        <origin xyz="0.158 -0.28 0.126" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_back_wheel">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_back_wheel">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>    
+
+    <!-- LEFT FRONT WHEEL -->
+
+    <joint name="left_front_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_front_wheel"/>
+        <origin xyz="-0.172 -0.28 0.126" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="left_front_wheel">
+        <visual>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="file:///home/reaicmu/aonrobot_ws/src/articubot_one/description/wheel.dae" scale = "10 10 10"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.125" radius="0.075">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/Black</material>
+        <mu1 value="0.1"/>
+        <mu2 value="0.1"/>
+    </gazebo>
+
+</robot>
